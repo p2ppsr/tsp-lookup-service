@@ -2,7 +2,7 @@
   "name": "@cwi/tsp-lookup-service",
   "version": "0.1.0",
   "description": "Provides lookup service for TSP tokens",
-  "main": "index.js",
+  "main": "src/TSPLookupService.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
