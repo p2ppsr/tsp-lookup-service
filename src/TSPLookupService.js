@@ -105,8 +105,15 @@ class TSPLookupService {
       return await this.storageEngine.findByArtistName({
         artistName: query.artistName
       })
-    } else {
-      const e = new Error('Query parameters must include a valid Identiy Key, Title, or Artist Name!')
+    } else if (query.songID) {
+      return await this.storageEngine.findBySongID({
+        songID: query.songID
+      })
+    } else if (query.findAll === 'true') {
+      return await this.storageEngine.findAll()
+    } 
+    else {
+      const e = new Error('Query parameters must include a valid Identiy Key, Title, Artist Name, Song ID, or Display all!')
       e.code = 'ERR_INSUFFICIENT_QUERY_PARAMS'
       throw e
     }

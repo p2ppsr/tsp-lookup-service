@@ -91,5 +91,25 @@ class KnexStorageEngine {
         artistName
     }).select('txid', 'vout')
   }
+
+  /**
+   * Look up song by SongID
+   * @param {Object} obj params given in an object
+   * @param {String} obj.artistIdentityKey artist's identity key(s)
+   */
+  async findBySongID({ songID }) {
+    return await this.knex(`${this.tablePrefix}songs`).where({
+        songID
+    }).select('txid', 'vout')
+  } 
+
+  /**
+   * Get all songs
+   * @param {Object} obj params given in an object
+   * @param {String} obj.artistIdentityKey artist's identity key(s)
+   */
+  async findAll () {
+    return await this.knex(`${this.tablePrefix}songs`).select('txid', 'vout')
+  }
 }
 module.exports = KnexStorageEngine

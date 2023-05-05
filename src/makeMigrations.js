@@ -1,7 +1,7 @@
 const makeMigrations = ({ tablePrefix }) => ([{
     up: async knex => {
-      await knex.schema.createTable(`${tablePrefix}users`, table => {
-        table.increments()
+      await knex.schema.createTable(`${tablePrefix}songs`, table => {
+        table.increments('songID', options={primaryKey: true})
         table.string('txid')
         table.integer('vout')
         table.string('artistIdentityKey')
@@ -14,9 +14,7 @@ const makeMigrations = ({ tablePrefix }) => ([{
       })
     },
     down: async knex => {
-      await knex.schema.dropTable(`${tablePrefix}users`)
+      await knex.schema.dropTable(`${tablePrefix}songs`)
     }
   }])
   module.exports = makeMigrations
-
-//Note: Are sats and songID columns required?
