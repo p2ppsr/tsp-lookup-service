@@ -113,7 +113,7 @@ class TSPLookupService {
       return await this.storageEngine.findAll()
     } 
     else {
-      const e = new Error('Query parameters must include a valid Identiy Key, Title, Artist Name, Song ID, or Display all!')
+      const e = new Error('Query parameters must include a valid Identity Key, Title, Artist Name, Song ID, or Display all!')
       e.code = 'ERR_INSUFFICIENT_QUERY_PARAMS'
       throw e
     }
