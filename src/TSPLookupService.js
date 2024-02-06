@@ -45,13 +45,13 @@ class TSPLookupService {
     })
 
     // TSP song data to store
-    const artistIdentityKey = result.fields[0].toString('base64')
-    const songTitle = result.fields[3].toString('base64')
-    const artistName = result.fields[4].toString('base64')
-    const description = result.fields[5].toString('base64')
-    const duration = result.fields[6].toString('base64')
-    const songFileURL = result.fields[7].toString('base64')
-    const artFileURL = result.fields[8].toString('base64')
+    const artistIdentityKey = result.lockingPublicKey
+    const songTitle = result.fields[2].toString('base64')
+    const artistName = result.fields[3].toString('base64')
+    const description = result.fields[4].toString('base64')
+    const duration = result.fields[5].toString('base64')
+    const songFileURL = result.fields[6].toString('base64')
+    const artFileURL = result.fields[7].toString('base64')
 
     // Store TSP fields in the StorageEngine
     await this.storageEngine.storeRecord({
