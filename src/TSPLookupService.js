@@ -109,7 +109,7 @@ class TSPLookupService {
       return await this.storageEngine.findBySongID({
         songID: query.songID
       })
-    } else if (query.findAll === 'true') {
+    } else if (query.findAll === 'true' || query.findAll === true) {
       return await this.storageEngine.findAll()
     } 
     else {
