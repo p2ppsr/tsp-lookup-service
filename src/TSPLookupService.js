@@ -24,7 +24,7 @@ Above 9=OP_DROP / OP_2DROP — Drop fields 2-8 from the stack.**/
 
 
 class TSPLookupService {
-  constructor ({ storageEngine }) {
+  constructor({ storageEngine }) {
     this.storageEngine = storageEngine
   }
 
@@ -36,7 +36,7 @@ class TSPLookupService {
    * @param {Buffer} obj.outputScript the outputScript data for the given UTXO
    * @returns {string} indicating the success status
    */
-  async outputAdded ({ txid, vout, outputScript, topic }) {
+  async outputAdded({ txid, vout, outputScript, topic }) {
     if (topic !== 'TSP') return
     // Decode the TSP fields from the Bitcoin outputScript
     const result = pushdrop.decode({
@@ -75,7 +75,7 @@ class TSPLookupService {
    * @param {string} obj.topic the topic this UTXO is apart of
    * @returns
    */
-  async outputSpent ({ txid, vout, topic }) {
+  async outputSpent({ txid, vout, topic }) {
     if (topic !== 'TSP') return
     await this.storageEngine.deleteRecord({ txid, vout })
   }
@@ -86,7 +86,7 @@ class TSPLookupService {
    * @param {object} obj.query lookup query given as an object
    * @returns {object} with the data given in an object
    */
-  async lookup ({ query }) {
+  async lookup({ query }) {
     // Validate Query
     if (!query) {
       const e = new Error('Lookup must include a valid query!')
@@ -105,13 +105,13 @@ class TSPLookupService {
       return await this.storageEngine.findByArtistName({
         artistName: query.artistName
       })
-    } else if (query.songID) {
-      return await this.storageEngine.findBySongID({
-        songID: query.songID
+    } else if (query.songIDs) {
+      return await this.storageEngine.findBySongIDs({
+        songIDs: query.songIDs
       })
     } else if (query.findAll === 'true' || query.findAll === true) {
       return await this.storageEngine.findAll()
-    } 
+    }
     else {
       const e = new Error('Query parameters must include a valid Identity Key, Title, Artist Name, Song ID, or Display all!')
       e.code = 'ERR_INSUFFICIENT_QUERY_PARAMS'
