@@ -99,7 +99,7 @@ class KnexStorageEngine {
    */
   async findBySongIDs({ songIDs }) {
     return await this.knex(`${this.tablePrefix}songs`)
-      .whereIn('songID', songIDs)
+      .whereIn('songFileURL', songIDs)
       .select('txid', 'vout');
   }
 
