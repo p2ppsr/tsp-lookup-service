@@ -1,6 +1,6 @@
 {
   "name": "@cwi/tsp-lookup-service",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "description": "Provides lookup service for TSP tokens",
   "main": "src/TSPLookupService.js",
   "scripts": {
